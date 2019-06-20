@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.Picasso;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         TextView txtTitle;
 
-        private ImageView coverImage;
+
 
 
 
@@ -56,7 +57,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
             txtTitle = mView.findViewById(R.id.title);
 
-            coverImage = mView.findViewById(R.id.coverImage);
+
 
         }
 
@@ -83,16 +84,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         holder.txtTitle.setText(dataList.get(position).getTitle());
-
-
-
-        Picasso.Builder builder = new Picasso.Builder(context);
-
-        builder.downloader(new OkHttp3Downloader(context));
-
-
-
-
 
     }
 

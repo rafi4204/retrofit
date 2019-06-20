@@ -1,6 +1,8 @@
 package com.example.retro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +15,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private CustomAdapter adapter;
 
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +34,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<RetroUser>> call, Response<List<RetroUser>> response) {
 
 
+               // Log.d("2","this is !!!!!!!!!!!!!!!!!!");
 
-                List<RetroUser> user=response.body();
+                generateDataList(response.body());
+             /*  List<RetroUser> user=response.body();
 
                 for(RetroUser el: user){
                     Log.d("1",el.getBody());
-                }
+                }*/
 
 
             }
@@ -54,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+    }
+    private void generateDataList(List<RetroUser> photoList) {
+
+
+        Log.d("2","this is !!!!!!!!!!!!!!!!!!");
+
+        recyclerView = findViewById(R.id.customRecyclerView);
+
+        adapter = new CustomAdapter(this,photoList);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setAdapter(adapter);
 
     }
 }
